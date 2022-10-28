@@ -619,8 +619,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae122c5241445c14d8da7b5ec0722b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 70
+  groundDrag: 5
+  jumpForce: 8
+  jumpCooldown: 0.25
+  airMultiplayer: 0.1
+  jumpKey: 32
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
   orientation: {fileID: 719541533}
+  speedText: {fileID: 0}
 --- !u!1 &1546508425
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +643,7 @@ GameObject:
   - component: {fileID: 1546508429}
   - component: {fileID: 1546508428}
   - component: {fileID: 1546508427}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +740,7 @@ GameObject:
   - component: {fileID: 1687275426}
   - component: {fileID: 1687275425}
   - component: {fileID: 1687275424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +837,7 @@ GameObject:
   - component: {fileID: 1983545909}
   - component: {fileID: 1983545908}
   - component: {fileID: 1983545907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -959,7 +969,7 @@ GameObject:
   - component: {fileID: 2006631755}
   - component: {fileID: 2006631754}
   - component: {fileID: 2006631753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
