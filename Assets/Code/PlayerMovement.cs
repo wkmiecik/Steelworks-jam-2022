@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,10 +42,16 @@ public class PlayerMovement : MonoBehaviour
     {
         GroundCheck();
         GetKeyboardInput();
-        //SpeedControl();
-        ApplyDrag();        
+        SpeedControl();
+        ApplyDrag();
+        UpdateSpeedText();
     }
-    
+
+    private void UpdateSpeedText()
+    {
+        speedText.SetText($"Speed: {rb.velocity.magnitude}");
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -107,14 +114,14 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
     }
 
-    //private void SpeedControl()
-    //{
-    //    Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-    //    if(flatVel.magnitude > moveSpeed)
-    //    {
-    //        Vector3 limitedVel = flatVel.normalized * moveSpeed;
-    //        rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);           
-    //    }        
-    //}
+        if (flatVel.magnitude > moveSpeed/10f)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed/10f;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
 }
