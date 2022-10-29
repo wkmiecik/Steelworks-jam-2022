@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed;
-
     NavMeshAgent agent;
+    [SerializeField] int maxhp = 200;
+    int hp;
 
     void Awake()
     {
+        hp = maxhp;
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
     }
 
     void Update()
