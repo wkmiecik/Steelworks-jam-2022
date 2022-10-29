@@ -234,7 +234,7 @@ MonoBehaviour:
   groundDrag: 5
   jumpForce: 8
   jumpCooldown: 0.25
-  airMultiplayer: 0.55
+  airMultiplayer: 0.65
   jumpKey: 32
   playerHeight: 2
   whatIsGround:
@@ -287,6 +287,8 @@ MonoBehaviour:
   grapplingCooldown: 0.8
   overshootYAxis: 0
   grappleKey: 116
+  predictionSphereCastRadius: 0
+  predictionPoint: {fileID: 0}
 --- !u!114 &1401479083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,4 +309,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   maxSwingDistance: 50
+  orientation: {fileID: 0}
+  horizontalThrustForce: 0
+  forwardThrustForce: 0
+  extendCable: 0
+  swingLeft: 97
+  swingRight: 100
+  swingForward: 119
+  longerRope: 304
+  shorternRope: 306
+  predictionSphereCastRadius: 0
+  predictionPoint: {fileID: 0}
   swingKey: 324
