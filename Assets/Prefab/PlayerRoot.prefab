@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1592244153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592244154}
+  m_Layer: 6
+  m_Name: ItemHold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592244154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592244153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.213, y: 0.792, z: 0.015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9212532310435322159}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319014283038064608
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +304,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 257339991453470091}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &9212532310435322159 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8956318290563060900, guid: e2713d25c0bb6ac4482516bebf03663b,
+    type: 3}
+  m_PrefabInstance: {fileID: 257339991453470091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1925737704116148625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -498,3 +535,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e6be4fa4b1ace4db18c09884d37c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1319014284016429953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319014284881032410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb99e9cecb36fa4f873ff2e0391e139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpRange: 2
+  itemMoveSpeed: 20
+  pickUpKey: 101
+  cam: {fileID: 8670489411663945000}
+  holdPlace: {fileID: 1592244154}
+  pickupable:
+    serializedVersion: 2
+    m_Bits: 1024
+  heldItem: {fileID: 0}

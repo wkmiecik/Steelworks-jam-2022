@@ -78,6 +78,10 @@ public class Swinging : MonoBehaviour
         {
             return;
         }
+        if (pm.IsPlayerHoldingItem)
+        {
+            return;
+        }
 
         isSwinging = true;
         pm.SetSwing(isSwinging);
