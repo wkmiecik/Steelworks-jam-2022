@@ -11,14 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
   - 
   - Ground
-=======
-  - HandsCamera
-  - 
->>>>>>> origin/main
-  - 
+  - ClimbableWall
   - 
   - 
   - 
