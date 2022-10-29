@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 40435121}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,24 +116,34 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1.6627462
-      outSlope: 1.6627462
+      inSlope: 0.011111637
+      outSlope: 0.011111637
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.0992064
+      outWeight: 0.1535046
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 0.0062437924
+      outSlope: 0.0062437924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10861695
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.7648091
-      outSlope: -1.7648091
+      inSlope: 0.012858436
+      outSlope: 0.012858436
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.24714565
+      inWeight: 0.20884347
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  animLength: 1.5
 --- !u!1 &3792989368251420394
 GameObject:
   m_ObjectHideFlags: 0
