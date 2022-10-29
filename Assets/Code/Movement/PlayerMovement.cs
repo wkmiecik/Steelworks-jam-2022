@@ -7,6 +7,9 @@ using System;
 public class PlayerMovement : MonoBehaviour
 {
     public bool IsGrounded => isGrounded;
+    public bool IsPlayerHoldingItem => isPlayerHoldingItem;
+    public bool IsRightArmBusy => isRightArmBusy;
+
     [field: SerializeField]public MovementState State { get; set; }
 
     public bool IsPlayerMoving
@@ -51,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isFrozen;
     private bool isGrappleActive;
     private bool isSwinging;
+    private bool isPlayerHoldingItem;
+    private bool isRightArmBusy;
 
     private Rigidbody rb;
 
@@ -94,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         isGrappleActive = true;
+        isRightArmBusy = true;
+
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetGrappleVelocity), 0.05f);
         Invoke(nameof(EndGrapplingMoveFreeze), 1f);
@@ -126,6 +133,12 @@ public class PlayerMovement : MonoBehaviour
     public void SetSwing(bool value)
     {
         isSwinging = value;
+        isRightArmBusy = value;
+    }
+
+    public void SetItemHolding(bool value)
+    {
+        isPlayerHoldingItem = value;
     }
 
     private void StateHandler()
@@ -256,6 +269,7 @@ public class PlayerMovement : MonoBehaviour
     private void EndGrapplingMoveFreeze()
     {
         isGrappleActive = false;
+        isRightArmBusy = false;
     }
 
     private void UpdateSpeedText()
