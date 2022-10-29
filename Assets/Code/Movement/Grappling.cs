@@ -6,7 +6,7 @@ public class Grappling : MonoBehaviour
 {
     [Header("References")]   
     [SerializeField] private Transform cam;
-    [SerializeField] private Transform gunTip;
+    [SerializeField] private Transform lineOrigin;
     [SerializeField] private LayerMask whatIsGrappleable;
     [SerializeField] private LineRenderer lineRenderer;
 
@@ -14,16 +14,20 @@ public class Grappling : MonoBehaviour
     [SerializeField] private float maxGrappleDistance;
     [SerializeField] private float grappleDelayTime;
     [SerializeField] private float grapplingCooldown;
-    [SerializeField] private float overshootYAxis;
-    
+    [SerializeField] private float overshootYAxis;    
 
     [Header("Input")]
     [SerializeField] private KeyCode grappleKey = KeyCode.Mouse1;
 
+    [Header("Prediction")]
+    public float predictionSphereCastRadius;
+    public Transform predictionPoint;
+
     private float grapplingCooldownTimer;
     private PlayerMovement pm;
+    private RaycastHit predictionHit;
     private Vector3 grapplePoint;
-    private bool grappling;
+    private bool isGrappling;
 
     private void Awake()
     {
@@ -36,6 +40,8 @@ public class Grappling : MonoBehaviour
             grapplingCooldownTimer -= Time.deltaTime;   
         }
 
+        CheckForGrapplingPoints();  
+
         if (Input.GetKeyDown(grappleKey))
         {
             StartGrapple();
@@ -44,9 +50,9 @@ public class Grappling : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (grappling)
+        if (isGrappling)
         {
-            lineRenderer.SetPosition(0, gunTip.position);
+            lineRenderer.SetPosition(0, lineOrigin.position);
         }
     }
 
@@ -56,12 +62,11 @@ public class Grappling : MonoBehaviour
         {
             return;
         }
-        grappling = true;
-
-        RaycastHit hit;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+        isGrappling = true;
+        
+        if (predictionHit.point != Vector3.zero)
         {
-            grapplePoint = hit.point;
+            grapplePoint = predictionHit.point;
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);            
             //pm.SetFreeze(grappling);
         }
@@ -89,15 +94,56 @@ public class Grappling : MonoBehaviour
         }
 
         pm.JumpToPosition(grapplePoint, highestPointOnArc);
-        Invoke(nameof(StopGrapple), 1f);
+        Invoke(nameof(StopGrapple), 2f);
     }
 
     private void StopGrapple()
     {
-        grappling = false;
+        isGrappling = false;
         //pm.SetFreeze(grappling);
         grapplingCooldownTimer = grapplingCooldown;
         lineRenderer.enabled = false;
+    }
+    private void CheckForGrapplingPoints()
+    {
+        if (isGrappling)
+        {
+            return;
+        }
+
+        RaycastHit raycastHit;
+        Physics.Raycast(cam.position, cam.forward, out raycastHit, maxGrappleDistance, whatIsGrappleable);
+
+        RaycastHit sphereCastHit;
+        Physics.SphereCast(cam.position, predictionSphereCastRadius, cam.forward, out sphereCastHit, maxGrappleDistance, whatIsGrappleable);
+
+        Vector3 realHitPoint;
+
+        if (raycastHit.point != Vector3.zero)
+        {
+            realHitPoint = raycastHit.point;
+        }
+        else if (sphereCastHit.point != Vector3.zero)
+        {
+            realHitPoint = sphereCastHit.point;
+        }
+        else
+        {
+            realHitPoint = Vector3.zero;
+        }
+
+        if (realHitPoint != Vector3.zero)
+        {
+            predictionPoint.gameObject.SetActive(true);
+            predictionPoint.transform.position = realHitPoint;
+
+        }
+        else
+        {
+            predictionPoint.gameObject.SetActive(false);
+        }
+
+        predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
     }
 
 }

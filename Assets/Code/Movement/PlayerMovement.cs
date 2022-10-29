@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float horizontalSpeedDuringClimb;
+    [SerializeField] private float swingMoveSpeed;
     [SerializeField] private float groundDrag;
     [Header("Jump")]
     [SerializeField] private float jumpForce;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isClimbing;
     private bool isFrozen;
     private bool isGrappleActive;
+    private bool isSwinging;
 
     private Rigidbody rb;
 
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         freeze,
         grappling,
+        swinging,
         walking,
         climbing,
         air
@@ -81,14 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        EndGrapple();
+        EndGrapplingMoveFreeze();
     }
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         isGrappleActive = true;
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-        Invoke(nameof(SetGrappleVelocity), 0.1f);
-        Invoke(nameof(EndGrapple), 1f);
+        Invoke(nameof(SetGrappleVelocity), 0.05f);
+        Invoke(nameof(EndGrapplingMoveFreeze), 1f);
     }
 
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
@@ -100,8 +103,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
-
-        return velocityXZ + velocityY;
+        
+       
+        return velocityXZ + velocityY;        
     }
 
     public void SetClimbing(bool value)
@@ -112,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetFreeze(bool value)
     {
         isFrozen = value;
+    }
+
+    public void SetSwing(bool value)
+    {
+        isSwinging = value;
     }
 
     private void StateHandler()
@@ -126,6 +135,11 @@ public class PlayerMovement : MonoBehaviour
         {
             State = MovementState.grappling;
             moveSpeed = walkingSpeed;
+        }
+        else if (isSwinging)
+        {
+            State = MovementState.swinging;
+            moveSpeed = swingMoveSpeed;
         }
         else if (isClimbing)
         {            
@@ -160,6 +174,10 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         if (isGrappleActive)
+        {
+            return;
+        }
+        if (isSwinging)
         {
             return;
         }
@@ -227,10 +245,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void SetGrappleVelocity()
-    {
+    {        
         rb.velocity = velocityToSet;
     }
-    private void EndGrapple()
+    private void EndGrapplingMoveFreeze()
     {
         isGrappleActive = false;
     }
