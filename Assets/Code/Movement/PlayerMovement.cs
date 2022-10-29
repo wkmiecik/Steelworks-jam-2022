@@ -6,6 +6,8 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool IsGrounded => isGrounded;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float groundDrag;
