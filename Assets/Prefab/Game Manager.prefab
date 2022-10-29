@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 8040224116478058184, guid: 0262e1dc553e4a8409409a6e3acbfdf9,
     type: 3}
+  playerCamera: {fileID: 0}

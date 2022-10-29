@@ -5,13 +5,19 @@ using DG.Tweening;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    void Start()
+    [SerializeField] AnimationCurve yMovementCurve;
+
+    Tween tween;
+
+    void OnEnable()
     {
-        
+        tween = transform.DOLocalMoveY(0.5f, 1)
+            .SetLoops(-1)
+            .SetEase(yMovementCurve);
     }
 
-    void Update()
+    private void OnDisable()
     {
-        
+        tween.Kill(true);
     }
 }
