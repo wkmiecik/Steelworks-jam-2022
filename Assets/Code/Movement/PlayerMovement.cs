@@ -84,14 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        EndGrapple();
+        EndGrapplingMoveFreeze();
     }
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         isGrappleActive = true;
-        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-        Invoke(nameof(SetGrappleVelocity), 0.1f);
-        Invoke(nameof(EndGrapple), 1f);
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight) * 0.9f;
+        Invoke(nameof(SetGrappleVelocity), 0.05f);
+        Invoke(nameof(EndGrapplingMoveFreeze), 1f);
     }
 
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
@@ -104,7 +104,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
-        return velocityXZ + velocityY;
+        Debug.Log(velocityXZ + velocityY);
+        Debug.Log(Vector3.Distance(startPoint, endPoint));
+        return velocityXZ + velocityY;        
     }
 
     public void SetClimbing(bool value)
@@ -176,6 +178,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        if (isSwinging)
+        {
+            return;
+        }
 
         //get walk direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -243,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = velocityToSet;
     }
-    private void EndGrapple()
+    private void EndGrapplingMoveFreeze()
     {
         isGrappleActive = false;
     }
