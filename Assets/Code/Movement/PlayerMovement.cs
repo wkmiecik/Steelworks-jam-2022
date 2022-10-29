@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float horizontalSpeedDuringClimb;
+    [SerializeField] private float swingMoveSpeed;
     [SerializeField] private float groundDrag;
     [Header("Jump")]
     [SerializeField] private float jumpForce;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isClimbing;
     private bool isFrozen;
     private bool isGrappleActive;
+    private bool isSwinging;
 
     private Rigidbody rb;
 
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         freeze,
         grappling,
+        swinging,
         walking,
         climbing,
         air
@@ -114,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
         isFrozen = value;
     }
 
+    public void SetSwing(bool value)
+    {
+        isSwinging = value;
+    }
+
     private void StateHandler()
     {
         if (isFrozen)
@@ -126,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
         {
             State = MovementState.grappling;
             moveSpeed = walkingSpeed;
+        }
+        else if (isSwinging)
+        {
+            State = MovementState.swinging;
+            moveSpeed = swingMoveSpeed;
         }
         else if (isClimbing)
         {            

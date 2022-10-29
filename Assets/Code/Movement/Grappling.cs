@@ -6,7 +6,7 @@ public class Grappling : MonoBehaviour
 {
     [Header("References")]   
     [SerializeField] private Transform cam;
-    [SerializeField] private Transform gunTip;
+    [SerializeField] private Transform lineOrigin;
     [SerializeField] private LayerMask whatIsGrappleable;
     [SerializeField] private LineRenderer lineRenderer;
 
@@ -23,7 +23,7 @@ public class Grappling : MonoBehaviour
     private float grapplingCooldownTimer;
     private PlayerMovement pm;
     private Vector3 grapplePoint;
-    private bool grappling;
+    private bool isGrappling;
 
     private void Awake()
     {
@@ -44,9 +44,9 @@ public class Grappling : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (grappling)
+        if (isGrappling)
         {
-            lineRenderer.SetPosition(0, gunTip.position);
+            lineRenderer.SetPosition(0, lineOrigin.position);
         }
     }
 
@@ -56,7 +56,7 @@ public class Grappling : MonoBehaviour
         {
             return;
         }
-        grappling = true;
+        isGrappling = true;
 
         RaycastHit hit;
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
@@ -94,7 +94,7 @@ public class Grappling : MonoBehaviour
 
     private void StopGrapple()
     {
-        grappling = false;
+        isGrappling = false;
         //pm.SetFreeze(grappling);
         grapplingCooldownTimer = grapplingCooldown;
         lineRenderer.enabled = false;
