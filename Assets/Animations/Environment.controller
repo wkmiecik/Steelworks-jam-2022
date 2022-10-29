@@ -36,7 +36,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 5011167046549699307}
-    m_Position: {x: 330, y: 270, z: 0}
+    m_Position: {x: 490, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 469749369802394160}
     m_Position: {x: 320, y: 100, z: 0}
@@ -45,7 +45,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 50, y: 10, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -113,7 +113,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GateAnimation
-  m_Speed: 1
+  m_Speed: 0.02
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

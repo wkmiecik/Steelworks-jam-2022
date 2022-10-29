@@ -6,12 +6,9 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     NavMeshAgent agent;
-    [SerializeField] int maxhp = 200;
-    int hp;
 
     void Awake()
     {
-        hp = maxhp;
         agent = GetComponent<NavMeshAgent>();
     }
 
