@@ -248,6 +248,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2713d25c0bb6ac4482516bebf03663b, type: 3}
+--- !u!114 &1319014283120766078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1286997994184532469, guid: e2713d25c0bb6ac4482516bebf03663b,
+    type: 3}
+  m_PrefabInstance: {fileID: 257339991453470091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5728556782314d046ac5470710888dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1319014283470855214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1286997993729577381, guid: e2713d25c0bb6ac4482516bebf03663b,
@@ -500,6 +512,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 646139818276072779, guid: c7dc9e970491091418c3352052f56518,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7dc9e970491091418c3352052f56518, type: 3}
 --- !u!4 &1319014283380817506 stripped
@@ -558,6 +575,7 @@ MonoBehaviour:
   pickupable:
     serializedVersion: 2
     m_Bits: 1024
+  playerCam: {fileID: 1319014283120766078}
   heldItem: {fileID: 0}
   closeToAltar: 0
   closestAltar: {fileID: 0}
