@@ -7,18 +7,18 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class SkyColour : MonoBehaviour
 {
-    public float HitPoints;
+    public healthSystem healthSystem;
+
     public Volume red;
 
     // Start is called before the first frame update
     void Start()
     {
-        HitPoints = 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        red.weight = 1f - (HitPoints / 100f);
+        red.weight = 1f-healthSystem.GetHealthAmountNormalized();
     }
 }
