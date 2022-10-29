@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ItemPickUp : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class ItemPickUp : MonoBehaviour
     private Collider itemCollider;
     private PlayerMovement pm;
     private bool isHoldingItem;
+
+    public bool closeToAltar;
+    public Transform closestAltar;
+
 
     [SerializeField] private Animator animator;
 
@@ -90,10 +95,9 @@ public class ItemPickUp : MonoBehaviour
 
     private void DropObject()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f))
+        if (closeToAltar)
         {
-            Debug.Log(hit.collider);
+            transform.DOLookAt(closestAltar.position, 1f);
         }
 
         isHoldingItem = false;
