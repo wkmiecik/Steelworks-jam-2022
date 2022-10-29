@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.93
+    m_Value: 3.25
   directLightingStrength:
     m_OverrideState: 1
-    m_Value: 0.24
+    m_Value: 0.39
   radius:
     m_OverrideState: 1
     m_Value: 2.79
@@ -256,10 +256,10 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.4575472, b: 0.46106964, a: 1}
+    m_Value: {r: 1, g: 0.7028302, b: 0.7046312, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 200000
+    m_Value: 10000
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -271,19 +271,19 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: -215.6
+    m_Value: 710.7
   maximumHeight:
     m_OverrideState: 1
     m_Value: 2000
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 164.51
+    m_Value: 38.4
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.8820755, b: 0.9130596, a: 1}
+    m_Value: {r: 1, g: 0.5990566, b: 0.70677274, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 1
     m_Value: 1
