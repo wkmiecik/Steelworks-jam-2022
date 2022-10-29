@@ -18,10 +18,7 @@ public class PlayerSFX : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< .merge_file_a17412
         Debug.Log(playerMovement.IsPlayerMoving);
-=======
->>>>>>> .merge_file_a04116
         if (playerMovement.IsPlayerMoving)
         {
             audioSource.UnPause();

@@ -23,12 +23,9 @@ public class Grappling : MonoBehaviour
     public float predictionSphereCastRadius;
     public Transform predictionPoint;
 
-<<<<<<< .merge_file_a14588
-=======
     [Header("Animation")]
     [SerializeField] Animator animator;
 
->>>>>>> .merge_file_a19188
     private float grapplingCooldownTimer;
     private PlayerMovement pm;
     private RaycastHit predictionHit;
@@ -52,11 +49,8 @@ public class Grappling : MonoBehaviour
         {
             StartGrapple();
         }
-<<<<<<< .merge_file_a14588
-=======
 
         animator.SetBool("TentacleOut", isGrappling);
->>>>>>> .merge_file_a19188
     }
 
     private void LateUpdate()
