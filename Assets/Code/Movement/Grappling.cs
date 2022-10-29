@@ -67,6 +67,10 @@ public class Grappling : MonoBehaviour
         {
             return;
         }
+        if (pm.IsPlayerHoldingItem)
+        {
+            return;
+        }
         isGrappling = true;
         
         if (predictionHit.point != Vector3.zero)
