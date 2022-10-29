@@ -21,6 +21,8 @@ public class ItemPickUp : MonoBehaviour
     private PlayerMovement pm;
     private bool isHoldingItem;
 
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         pm = GetComponent<PlayerMovement>();
@@ -31,6 +33,13 @@ public class ItemPickUp : MonoBehaviour
         if (heldItem != null)
         {
             MoveObject();
+
+            // Picked up bug
+            var bug = heldItem.GetComponent<AltarBug>();
+            if (bug != null)
+            {
+                bug.PickedUp();
+            }
         }
     }
 
@@ -75,10 +84,18 @@ public class ItemPickUp : MonoBehaviour
        
         heldItem = pickedObject;
         heldItem.transform.parent = holdPlace;
+
+        animator.SetTrigger("TentacleGrab");
     }
 
     private void DropObject()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f))
+        {
+            Debug.Log(hit.collider);
+        }
+
         isHoldingItem = false;
         pm.SetItemHolding(isHoldingItem);
         heldItemRigidbody.useGravity = true;
@@ -87,6 +104,8 @@ public class ItemPickUp : MonoBehaviour
         heldItem.transform.parent = null;
 
         heldItem = null;
+
+        animator.SetTrigger("TentacleUngrab");
     }
 
     private void MoveObject()

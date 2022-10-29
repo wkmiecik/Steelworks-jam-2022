@@ -21,7 +21,7 @@ public class Grappling : MonoBehaviour
 
     [Header("Prediction")]
     public float predictionSphereCastRadius;
-    public Transform predictionPoint;
+    //public Transform predictionPoint;
 
     [Header("Animation")]
     [SerializeField] Animator animator;
@@ -141,16 +141,16 @@ public class Grappling : MonoBehaviour
             realHitPoint = Vector3.zero;
         }
 
-        if (realHitPoint != Vector3.zero)
-        {
-            predictionPoint.gameObject.SetActive(true);
-            predictionPoint.transform.position = realHitPoint;
+        //if (realHitPoint != Vector3.zero)
+        //{
+        //    predictionPoint.gameObject.SetActive(true);
+        //    predictionPoint.transform.position = realHitPoint;
 
-        }
-        else
-        {
-            predictionPoint.gameObject.SetActive(false);
-        }
+        //}
+        //else
+        //{
+        //    predictionPoint.gameObject.SetActive(false);
+        //}
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
     }

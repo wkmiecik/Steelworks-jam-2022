@@ -260,6 +260,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 257339991453470091}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1319014283920057359 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1286997994481035652, guid: e2713d25c0bb6ac4482516bebf03663b,
+    type: 3}
+  m_PrefabInstance: {fileID: 257339991453470091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!120 &1319014284266718267 stripped
 LineRenderer:
   m_CorrespondingSourceObject: {fileID: 1286997992916928944, guid: e2713d25c0bb6ac4482516bebf03663b,
@@ -291,7 +297,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d39b09d253893844083b416ffa435a32, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -321,6 +327,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 8670489411663945000}
+    - target: {fileID: 1401479083, guid: c7dc9e970491091418c3352052f56518, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1319014283920057359}
     - target: {fileID: 1401479083, guid: c7dc9e970491091418c3352052f56518, type: 3}
       propertyPath: swingLeft
       value: 97
@@ -548,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRange: 2
-  itemMoveSpeed: 20
+  itemMoveSpeed: 200
   pickUpKey: 101
   cam: {fileID: 8670489411663945000}
   holdPlace: {fileID: 1592244154}
@@ -556,3 +566,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   heldItem: {fileID: 0}
+  animator: {fileID: 244286642}

@@ -29,7 +29,7 @@ public class Swinging : MonoBehaviour
 
     [Header("Prediction")]   
     public float predictionSphereCastRadius;
-    public Transform predictionPoint;
+    //public Transform predictionPoint;
 
     private Vector3 swingPoint;
     private Vector3 currentGrapplePosition;
@@ -41,6 +41,9 @@ public class Swinging : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] private KeyCode swingKey = KeyCode.Mouse1;
+
+    [Header("Animation")]
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
@@ -65,6 +68,8 @@ public class Swinging : MonoBehaviour
         {
             SwingMovement();
         }
+
+        animator.SetBool("TentacleOut", isSwinging);
     }
 
     private void LateUpdate()
@@ -187,16 +192,16 @@ public class Swinging : MonoBehaviour
             realHitPoint = Vector3.zero;
         }
 
-        if(realHitPoint != Vector3.zero)
-        {
-            predictionPoint.gameObject.SetActive(true);
-            predictionPoint.transform.position = realHitPoint;
+        //if(realHitPoint != Vector3.zero)
+        //{
+        //    predictionPoint.gameObject.SetActive(true);
+        //    predictionPoint.transform.position = realHitPoint;
             
-        }
-        else
-        {
-            predictionPoint.gameObject.SetActive(false);
-        }
+        //}
+        //else
+        //{
+        //    predictionPoint.gameObject.SetActive(false);
+        //}
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
     }
