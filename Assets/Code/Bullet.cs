@@ -37,6 +37,12 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.Die();
+        }
+
         if (dieAfterHit)
         {
             Destroy(gameObject);
