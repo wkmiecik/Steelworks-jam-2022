@@ -8,6 +8,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool IsGrounded => isGrounded;
     [field: SerializeField]public MovementState State { get; set; }
+
+    public bool IsPlayerMoving
+    {
+        get => isGrounded && rb.velocity.magnitude > 0.1f;
+    }
    
 
     [Header("Movement")]
