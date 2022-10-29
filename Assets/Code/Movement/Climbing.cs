@@ -88,22 +88,23 @@ public class Climbing : MonoBehaviour
     private void WallCheck()
     {
         isWallInFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, climbableWall);
-        wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
-        Debug.Log(wallLookAngle);
+        wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);        
     }
 
     private void StartClimbing()
     {
-        isClimbing = true; 
+        isClimbing = true;
+        pm.SetClimbing(isClimbing);
     }
 
     private void ClimbingMovement()
     {
-        rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);       
     }
 
     private void StopClimbing()
     {
         isClimbing = false;
+        pm.SetClimbing(isClimbing);
     }
 }
