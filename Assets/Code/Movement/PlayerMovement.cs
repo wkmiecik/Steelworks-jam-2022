@@ -33,13 +33,17 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-    private Vector3 moveDirection;
     private float moveSpeed;
+    private Vector3 moveDirection;
+    private Vector3 velocityToSet;
+   
 
     //SF FOR TESTING
     private bool isGrounded;
     private bool isReadyToJump = true;
-    private bool isClimbing;    
+    private bool isClimbing;
+    private bool isFrozen;
+    private bool isGrappleActive;
 
     private Rigidbody rb;
 
@@ -47,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
     public enum MovementState
     {
+        freeze,
+        grappling,
         walking,
         climbing,
         air
@@ -73,14 +79,55 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        EndGrapple();
+    }
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    {
+        isGrappleActive = true;
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        Invoke(nameof(SetGrappleVelocity), 0.1f);
+        Invoke(nameof(EndGrapple), 1f);
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
+            + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
+
+        return velocityXZ + velocityY;
+    }
+
     public void SetClimbing(bool value)
     {
         isClimbing = value;      
     }
 
+    public void SetFreeze(bool value)
+    {
+        isFrozen = value;
+    }
+
     private void StateHandler()
     {
-        if (isClimbing)
+        if (isFrozen)
+        {
+            State = MovementState.freeze;
+            moveSpeed = 0f;
+            rb.velocity = Vector3.zero;
+        }
+        else if (isGrappleActive)
+        {
+            State = MovementState.grappling;
+            moveSpeed = walkingSpeed;
+        }
+        else if (isClimbing)
         {            
             State = MovementState.climbing;
             moveSpeed = horizontalSpeedDuringClimb;            
@@ -112,6 +159,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (isGrappleActive)
+        {
+            return;
+        }
+
         //get walk direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
        
@@ -138,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyDrag()
     {
-        if (isGrounded)
+        if (isGrounded && !isGrappleActive)
         {
             rb.drag = groundDrag;
         }
@@ -159,6 +211,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
+        if (isGrappleActive)
+        {
+            return;
+        }
+
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         if (flatVel.magnitude > moveSpeed / 10f)
@@ -167,6 +224,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
         
+    }
+
+    private void SetGrappleVelocity()
+    {
+        rb.velocity = velocityToSet;
+    }
+    private void EndGrapple()
+    {
+        isGrappleActive = false;
     }
 
     private void UpdateSpeedText()

@@ -10,10 +10,12 @@ public class Shooting : MonoBehaviour
     [SerializeField] float bulletForce;
     [SerializeField] float shootingDelay = 0.6f;
 
+    AudioSource audioSource;
     float cooldown;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         cooldown = shootingDelay;
     }
 
@@ -25,9 +27,9 @@ public class Shooting : MonoBehaviour
         {
             cooldown = shootingDelay;
 
-            //animator.Play("Shooting");
+            audioSource.Play();
+
             animator.SetTrigger("Shoot");
-            //animator.ResetTrigger("Shoot");
 
             Rigidbody rb = Instantiate(bulletPrefab, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation).GetComponent<Rigidbody>();
             rb.AddRelativeForce(Vector3.forward * bulletForce);

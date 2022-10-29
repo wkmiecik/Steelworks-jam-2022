@@ -6,17 +6,18 @@ using DG.Tweening;
 public class EnemyAnimation : MonoBehaviour
 {
     [SerializeField] AnimationCurve yMovementCurve;
+    [SerializeField] float animLength;
 
     Tween tween;
 
     void OnEnable()
     {
-        tween = transform.DOLocalMoveY(0.5f, 1)
+        tween = transform.DOLocalMoveY(0.1f, animLength)
             .SetLoops(-1)
             .SetEase(yMovementCurve);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         tween.Kill(true);
     }
