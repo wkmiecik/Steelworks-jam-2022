@@ -23,6 +23,9 @@ public class Grappling : MonoBehaviour
     public float predictionSphereCastRadius;
     public Transform predictionPoint;
 
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+
     private float grapplingCooldownTimer;
     private PlayerMovement pm;
     private RaycastHit predictionHit;
@@ -46,6 +49,8 @@ public class Grappling : MonoBehaviour
         {
             StartGrapple();
         }
+
+        animator.SetBool("TentacleOut", isGrappling);
     }
 
     private void LateUpdate()
