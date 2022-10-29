@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7646497188874669870}
-  - component: {fileID: 1997893444}
+  - component: {fileID: 1282811971}
   m_Layer: 0
   m_Name: Arms
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1997893444
+--- !u!114 &1282811971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
