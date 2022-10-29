@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e6be4fa4b1ace4db18c09884d37c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &4761286796101649614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,3 +533,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 >>>>>>> .merge_file_a17440
+=======
+>>>>>>> origin/main
