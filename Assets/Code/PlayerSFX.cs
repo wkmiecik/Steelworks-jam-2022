@@ -18,7 +18,6 @@ public class PlayerSFX : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerMovement.IsPlayerMoving);
         if (playerMovement.IsPlayerMoving)
         {
             audioSource.UnPause();
