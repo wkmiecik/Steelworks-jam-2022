@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 168.97066, g: 1718.1455, b: 3546.7656, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1316,7 +1316,7 @@ PrefabInstance:
     - target: {fileID: 1319014283038064607, guid: eb6ac02df015a86419f79c12e423d798,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1319014283038064607, guid: eb6ac02df015a86419f79c12e423d798,
         type: 3}
@@ -2278,6 +2278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 729833596, guid: dbf481f652032ef45856166c2e29aec3, type: 3}
+      propertyPath: m_Name
+      value: Dying VFX
+      objectReference: {fileID: 0}
     - target: {fileID: 7151405354021322377, guid: dbf481f652032ef45856166c2e29aec3,
         type: 3}
       propertyPath: m_RootOrder
