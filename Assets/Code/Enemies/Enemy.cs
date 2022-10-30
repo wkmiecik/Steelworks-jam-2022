@@ -6,15 +6,17 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     NavMeshAgent agent;
+    PlayerMovement pm;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        pm = FindObjectOfType<PlayerMovement>();
     }
 
     void Update()
     {
-        agent.SetDestination(GameManager.instance.PlayerCameraPos);
+        agent.SetDestination(pm.transform.position);
     }
 
     public void Die()
