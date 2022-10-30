@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 646139818276072772}
   - component: {fileID: 1401479083}
   - component: {fileID: 319768267586843769}
+  - component: {fileID: 5780188514168131212}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -289,7 +290,7 @@ MonoBehaviour:
   overshootYAxis: 0
   grappleKey: 116
   predictionSphereCastRadius: 0
-  predictionPoint: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &1401479083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +311,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   maxSwingDistance: 50
+  swingDelayTime: 0.15
   orientation: {fileID: 0}
   horizontalThrustForce: 0
   forwardThrustForce: 0
@@ -320,8 +322,8 @@ MonoBehaviour:
   longerRope: 304
   shorternRope: 306
   predictionSphereCastRadius: 0
-  predictionPoint: {fileID: 0}
   swingKey: 324
+  animator: {fileID: 0}
 --- !u!82 &319768267586843769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -418,3 +420,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5780188514168131212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646139818276072779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508499a66e3a4b94d965578b66972680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmountMax: 100
