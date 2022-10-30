@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             var healthSystem = other.GetComponentInParent<HealthSystem>();
             healthSystem.TakeDamege(20);
