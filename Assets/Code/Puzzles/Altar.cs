@@ -6,6 +6,8 @@ public class Altar : MonoBehaviour
 {
     public CapsuleCollider positionCollider;
 
+    public Portal portal;
+
     private void Start()
     {
         positionCollider = GetComponentInChildren<CapsuleCollider>();
@@ -31,5 +33,10 @@ public class Altar : MonoBehaviour
             playerPickUp.closeToAltar = false;
             playerPickUp.closestAltar = this;
         }
+    }
+
+    public void TriggerEndPortal()
+    {
+        portal.Open();
     }
 }
