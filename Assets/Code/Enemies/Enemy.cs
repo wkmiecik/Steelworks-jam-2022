@@ -29,4 +29,12 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            var healthSystem = other.GetComponentInParent<healthSystem>();
+            healthSystem.TakeDamege(20);
+        }
+    }
 }

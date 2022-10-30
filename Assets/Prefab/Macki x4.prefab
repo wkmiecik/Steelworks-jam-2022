@@ -130,6 +130,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5228240775676567773}
+  - component: {fileID: 7015151655490262890}
+  - component: {fileID: 9020750898714677331}
   m_Layer: 0
   m_Name: Macki x4
   m_TagString: Untagged
@@ -156,6 +158,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7015151655490262890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281035014063014816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5, z: 1}
+  m_Center: {x: -8, y: 14.24, z: 17.34}
+--- !u!114 &9020750898714677331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281035014063014816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe90f4b952fa234bbda128e1381e877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &385356168292498745
 GameObject:
   m_ObjectHideFlags: 0
