@@ -47,3 +47,4 @@ MonoBehaviour:
   isInputLocked: 0
   playerMovement: {fileID: 0}
   playerCamera: {fileID: 0}
+  player: {fileID: 0}
