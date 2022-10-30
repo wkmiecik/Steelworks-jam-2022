@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -8.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -40,11 +41,12 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6414825715766418841}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 1194657162895cf41a278fe3576dbb4a, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 5a40bac8ff74a0b43b9192cfeb011b80, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
+  m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
       m_Array:
@@ -70,6 +72,9 @@ VisualEffect:
       - m_Value: {x: 0, y: 5, z: 10}
         m_Name: Initial Velocity_vector
         m_Overridden: 1
+      - m_Value: {x: 0, y: -12.07, z: 0}
+        m_Name: Gravity Vector
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -84,7 +89,7 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 15.999998, g: 15.999998, b: 15.999998, a: 0}
+          key0: {r: 445.72183, g: 445.72183, b: 445.72183, a: 0}
           key1: {r: 1, g: 1, b: 1, a: 1}
           key2: {r: 1, g: 0, b: 0, a: 0.9577465}
           key3: {r: 0, g: 0, b: 0, a: 0}
@@ -122,6 +127,7 @@ VisualEffect:
       m_Array: []
 --- !u!73398921 &5007453256466231256
 VFXRenderer:
+  serializedVersion: 1
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,14 +137,14 @@ VFXRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
