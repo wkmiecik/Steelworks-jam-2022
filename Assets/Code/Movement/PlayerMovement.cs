@@ -277,6 +277,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateSpeedText()
     {
-        speedText.SetText($"Speed: {rb.velocity.magnitude}");
+        if (speedText != null && speedText.isActiveAndEnabled)
+            speedText.SetText($"Speed: {rb.velocity.magnitude}");
     }    
 }

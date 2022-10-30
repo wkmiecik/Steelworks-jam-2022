@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456cf1cf4e576274e98d50fb05ceff98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 100
-  red: {fileID: 20387291}
+  healthSystem: {fileID: 0}
+  red: {fileID: 20387290}
 --- !u!114 &20387290
 MonoBehaviour:
   m_ObjectHideFlags: 0
