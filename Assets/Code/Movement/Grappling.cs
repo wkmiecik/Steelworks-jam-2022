@@ -30,6 +30,7 @@ public class Grappling : MonoBehaviour
     private PlayerMovement pm;
     private RaycastHit predictionHit;
     private Vector3 grapplePoint;
+    private Vector3 hookPosition;
     private bool isGrappling;
 
     private void Awake()
@@ -55,9 +56,17 @@ public class Grappling : MonoBehaviour
 
     private void LateUpdate()
     {
+        DrawRope();
+    }
+
+    private void DrawRope()
+    {
         if (isGrappling)
         {
             lineRenderer.SetPosition(0, lineOrigin.position);
+            lineRenderer.SetPosition(1, hookPosition);
+            float lineSpeedMultiplayer = Mathf.Clamp((Vector3.Distance(lineOrigin.transform.position, grapplePoint) / 6f), 2.5f, maxGrappleDistance / 6f);
+            hookPosition = Vector3.Lerp(hookPosition, grapplePoint, Time.deltaTime * lineSpeedMultiplayer);
         }
     }
 
@@ -84,8 +93,11 @@ public class Grappling : MonoBehaviour
             grapplePoint = cam.position + (cam.forward * maxGrappleDistance);
             Invoke(nameof(StopGrapple), grappleDelayTime);
         }
+        grapplePoint = predictionHit.point;
+        lineRenderer.positionCount = 2;
+        hookPosition = lineOrigin.transform.position;
         lineRenderer.enabled = true;
-        lineRenderer.SetPosition(1, grapplePoint);
+        isGrappling = true;
     }
 
     private void ExecuteGrapple()
@@ -111,6 +123,7 @@ public class Grappling : MonoBehaviour
         isGrappling = false;
         //pm.SetFreeze(grappling);
         grapplingCooldownTimer = grapplingCooldown;
+        lineRenderer.positionCount = 0;
         lineRenderer.enabled = false;
     }
     private void CheckForGrapplingPoints()

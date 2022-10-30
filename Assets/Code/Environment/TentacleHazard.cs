@@ -6,10 +6,11 @@ public class TentacleHazard : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        Debug.Log(other);
+        if (other.CompareTag("Player"))
         {
-            var healthSystem = other.GetComponentInParent<healthSystem>();
-            healthSystem.TakeDamege(100);
+            var healthSystem = other.GetComponentInParent<HealthSystem>();
+            healthSystem.TakeDamege();
         }
     }
 }
