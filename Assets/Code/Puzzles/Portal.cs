@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // End game
+            SceneManager.LoadScene(2);
             Debug.Log("GAME END");
         }
     }
