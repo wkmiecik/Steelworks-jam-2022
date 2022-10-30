@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2808839011606209327}
   - component: {fileID: 6832285972104256641}
   - component: {fileID: 6832285972104256637}
-  - component: {fileID: 1254186079}
   m_Layer: 0
   m_Name: duszek
   m_TagString: Enemy
@@ -54,8 +53,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 3
+  m_BaseOffset: -0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!65 &6832285972104256641
@@ -69,21 +68,9 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.12, z: 1}
-  m_Center: {x: 0, y: 0.82, z: 0}
+  m_Size: {x: 1, y: 2.42, z: 1}
+  m_Center: {x: 0, y: 1.23, z: 0}
 --- !u!114 &6832285972104256637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526981635686016051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03703b487439adf49968ba3ddd97ebba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1254186079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +95,6 @@ GameObject:
   - component: {fileID: 6607941389113642925}
   - component: {fileID: 7858796336385423337}
   - component: {fileID: 7858796336385423336}
-  - component: {fileID: 1789127682}
-  - component: {fileID: 1789127681}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemy
@@ -125,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8014225591588563718}
   m_LocalRotation: {x: 0.6537058, y: 0.2695715, z: -0.2695715, w: 0.6537058}
-  m_LocalPosition: {x: 0.069, y: 1.12, z: -0.083}
+  m_LocalPosition: {x: 0.069, y: 2.738, z: -0.083}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,91 +197,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -2.877411
-      value: 0.1000061
-      inSlope: 0
-      outSlope: 0
+      time: 0
+      value: 0
+      inSlope: 0.011111637
+      outSlope: 0.011111637
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.1535046
     - serializedVersion: 3
-      time: -1.0208523
-      value: 0.8255597
-      inSlope: 0.0030856016
-      outSlope: 0.0030856016
+      time: 0.5
+      value: 0.5
+      inSlope: 0.0062437924
+      outSlope: 0.0062437924
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.10861695
     - serializedVersion: 3
-      time: 0.99922127
-      value: 0.09962082
-      inSlope: 0
-      outSlope: 0
+      time: 1
+      value: 0
+      inSlope: 0.012858436
+      outSlope: 0.012858436
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  animLength: 2
---- !u!64 &1789127682
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8014225591588563718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 57650af184cc24e4e9913662f0b07a1b, type: 3}
---- !u!114 &1789127681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8014225591588563718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c0fb5f30aa0994093d31b262a7f5f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yMovementCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -2.877411
-      value: 0.1000061
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: -1.0208523
-      value: 0.8255597
-      inSlope: 0.0030856016
-      outSlope: 0.0030856016
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.99922127
-      value: 0.09962082
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
+      inWeight: 0.20884347
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
