@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
     {
         cooldown -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)  && cooldown <= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0)  && cooldown <= 0 && !GameManager.instance.isInputLocked)
         {
             cooldown = shootingDelay;
 

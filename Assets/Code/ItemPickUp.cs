@@ -13,6 +13,7 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField] private Transform cam;
     [SerializeField] private Transform holdPlace;
     [SerializeField] private LayerMask pickupable;
+    [SerializeField] private PlayerCam playerCam;
 
     [SerializeField] private GameObject heldItem;
     private RaycastHit physicHit;
@@ -23,7 +24,7 @@ public class ItemPickUp : MonoBehaviour
     private bool isHoldingItem;
 
     public bool closeToAltar;
-    public Transform closestAltar;
+    public Altar closestAltar;
 
 
     [SerializeField] private Animator animator;
@@ -95,9 +96,10 @@ public class ItemPickUp : MonoBehaviour
 
     private void DropObject()
     {
-        if (closeToAltar)
+        if (closeToAltar && heldItem.CompareTag("Bug"))
         {
-            transform.DOLookAt(closestAltar.position, 1f);
+            StartCoroutine("PlaceOnAltarSequence");
+            return;
         }
 
         isHoldingItem = false;
@@ -119,5 +121,31 @@ public class ItemPickUp : MonoBehaviour
             Vector3 moveDircetion = (holdPlace.position - heldItem.transform.position);
             heldItemRigidbody.AddForce(moveDircetion * itemMoveSpeed);
         }
+    }
+
+    private IEnumerator PlaceOnAltarSequence()
+    {
+        GameManager.instance.LockInput();
+
+        if (Vector3.Distance(pm.transform.position, closestAltar.transform.position) < 1.5f)
+            pm.transform.DOMove(pm.transform.position + (pm.transform.forward * -0.5f), 2);
+
+        playerCam.transform.DOLookAt(closestAltar.transform.position, .6f, AxisConstraint.Y);
+
+        yield return new WaitForSeconds(.4f);
+
+        playerCam.transform.DOBlendableRotateBy(new Vector3(0, -20, 0), 2);
+
+        animator.SetTrigger("TentaclePlaceOnAltar");
+
+        yield return new WaitForSeconds(1);
+
+        isHoldingItem = false;
+        pm.SetItemHolding(isHoldingItem);
+        heldItem.transform.parent = closestAltar.transform;
+        heldItem.layer = LayerMask.NameToLayer("Default");
+        heldItem = null;
+
+        GameManager.instance.UnlockInput();
     }
 }
