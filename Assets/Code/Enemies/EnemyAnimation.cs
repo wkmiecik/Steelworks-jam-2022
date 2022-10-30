@@ -12,7 +12,7 @@ public class EnemyAnimation : MonoBehaviour
 
     void OnEnable()
     {
-        tween = transform.DOLocalMoveY(transform.position.y - 2, animLength)
+        tween = transform.DOLocalMoveY(transform.localPosition.y - 2, animLength)
             .SetLoops(-1)
             .SetEase(yMovementCurve);
     }

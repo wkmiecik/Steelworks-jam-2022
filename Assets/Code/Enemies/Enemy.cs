@@ -6,17 +6,20 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     NavMeshAgent agent;
+    BoxCollider damageTrigger;
     PlayerMovement pm;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        damageTrigger = GetComponent<BoxCollider>();
         pm = FindObjectOfType<PlayerMovement>();
     }
 
     void Update()
     {
-        agent.SetDestination(pm.transform.position);
+        if (agent.isActiveAndEnabled)
+            agent.SetDestination(pm.transform.position);
     }
 
     public void Die()
@@ -27,6 +30,8 @@ public class Enemy : MonoBehaviour
     IEnumerator DyingCoroutine()
     {
         // todo: dying animation
+        agent.enabled = false;
+        damageTrigger.enabled = false;
 
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
