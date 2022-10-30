@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
+    public CapsuleCollider positionCollider;
+
+    private void Start()
+    {
+        positionCollider = GetComponentInChildren<CapsuleCollider>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        var playerPickUp = other.GetComponent<ItemPickUp>();
+        var playerPickUp = other.GetComponentInParent<ItemPickUp>();
 
         if (playerPickUp != null)
         {
             playerPickUp.closeToAltar = true;
+            playerPickUp.closestAltar = this;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var playerPickUp = other.GetComponent<ItemPickUp>();
+        var playerPickUp = other.GetComponentInParent<ItemPickUp>();
 
         if (playerPickUp != null)
         {
             playerPickUp.closeToAltar = false;
+            playerPickUp.closestAltar = this;
         }
     }
 }
