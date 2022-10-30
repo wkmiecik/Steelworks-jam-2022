@@ -8,7 +8,7 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField] AnimationCurve yMovementCurve;
     [SerializeField] float animLength;
 
-    Tween tween;
+    public Tween tween;
 
     void OnEnable()
     {

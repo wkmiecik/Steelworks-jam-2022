@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.Die();
+            enemy.Die(collision.impulse);
         }
 
         if (dieAfterHit)
