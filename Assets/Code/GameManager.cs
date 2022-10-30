@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement playerMovement;
     public Camera playerCamera;
+    public GameObject player;
 
     private void Awake()
     {

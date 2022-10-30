@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 1319014283038064607}
   m_Layer: 0
   m_Name: PlayerRoot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -868,7 +868,7 @@ PrefabInstance:
     - target: {fileID: 8917555476239339683, guid: e2713d25c0bb6ac4482516bebf03663b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000015497208
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8956318290241492578, guid: e2713d25c0bb6ac4482516bebf03663b,
         type: 3}
@@ -1099,6 +1099,10 @@ PrefabInstance:
       value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 1401479083, guid: c7dc9e970491091418c3352052f56518, type: 3}
+      propertyPath: swingDelayTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401479083, guid: c7dc9e970491091418c3352052f56518, type: 3}
       propertyPath: predictionPoint
       value: 
       objectReference: {fileID: 0}
@@ -1201,7 +1205,7 @@ PrefabInstance:
     - target: {fileID: 646139818276072776, guid: c7dc9e970491091418c3352052f56518,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 646139818276072776, guid: c7dc9e970491091418c3352052f56518,
         type: 3}

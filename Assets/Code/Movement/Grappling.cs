@@ -80,8 +80,7 @@ public class Grappling : MonoBehaviour
         {
             return;
         }
-        isGrappling = true;
-        
+
         if (predictionHit.point != Vector3.zero)
         {
             grapplePoint = predictionHit.point;
