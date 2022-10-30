@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         var force = impulse / Time.fixedDeltaTime;
 
         model.transform.DOBlendableLocalRotateBy(new Vector3(0, 0, 90), 1f);
-        model.transform.DOBlendableMoveBy(Vector3.down * 2f, 1f);
+        model.transform.DOBlendableMoveBy(Vector3.down * 1f, 1f);
         //model.transform.DOBlendableMoveBy(Vector3.forward * -1f, 1f);
 
         StartCoroutine(Dying());

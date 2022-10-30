@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 729833599}
   - component: {fileID: 729833598}
   m_Layer: 0
-  m_Name: Sparks
+  m_Name: Dying VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
