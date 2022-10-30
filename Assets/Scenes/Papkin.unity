@@ -1358,6 +1358,11 @@ PrefabInstance:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 1662382804}
+    - target: {fileID: 1925737705516533306, guid: eb6ac02df015a86419f79c12e423d798,
+        type: 3}
+      propertyPath: swingDelayTime
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8670489411663945000, guid: eb6ac02df015a86419f79c12e423d798,
         type: 3}
       propertyPath: m_LocalPosition.y
