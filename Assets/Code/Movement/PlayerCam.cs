@@ -23,6 +23,11 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.isInputLocked)
+        {
+            return;
+        }
+
         GetMouseInput();
         Rotate();
     }

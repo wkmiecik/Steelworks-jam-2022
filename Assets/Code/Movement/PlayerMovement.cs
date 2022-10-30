@@ -79,8 +79,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        GroundCheck();       
-        GetKeyboardInput();
+        GroundCheck();
+
+        if (!GameManager.instance.isInputLocked) 
+            GetKeyboardInput();
+
         SpeedControl();
         StateHandler();
         ApplyDrag();
