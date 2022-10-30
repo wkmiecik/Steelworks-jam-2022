@@ -8,7 +8,7 @@ public class TentacleHazard : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var healthSystem = other.GetComponentInParent<healthSystem>();
+            var healthSystem = other.GetComponentInParent<HealthSystem>();
             healthSystem.TakeDamege(100);
         }
     }

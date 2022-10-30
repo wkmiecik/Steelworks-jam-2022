@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            var healthSystem = other.GetComponentInParent<healthSystem>();
+            var healthSystem = other.GetComponentInParent<HealthSystem>();
             healthSystem.TakeDamege(20);
         }
     }

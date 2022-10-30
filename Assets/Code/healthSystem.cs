@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class healthSystem : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
     public event EventHandler OnDamaged;
     public event EventHandler OnDied;
@@ -12,20 +12,49 @@ public class healthSystem : MonoBehaviour
     public int HealthAmountMax => healthAmountMax;
     public int HealthAmount => healthAmount;
 
-    [SerializeField] private int healthAmountMax;
+    [SerializeField] private int healthAmountMax;   
     private int healthAmount;
+    private float immuneTimer;
+    private bool isImmune;
 
     private void Awake()
     {
         healthAmount = healthAmountMax;
     }
+    private void Update()
+    {
+        HandleImmuneState();
+    }
+
+    public void TakeDamege(int damage, float immuneTime)
+    {
+        if (isImmune)
+            return;
+
+        healthAmount -= damage;
+        immuneTimer = immuneTime;
+        healthAmount = Mathf.Clamp(healthAmount, 0, healthAmountMax);
+
+        OnDamaged?.Invoke(this, EventArgs.Empty);
+        Debug.Log("Obecne HP: "+ healthAmount);
+
+        if (IsDead())
+        {
+            OnDied?.Invoke(this, EventArgs.Empty);
+        }
+
+    }    
 
     public void TakeDamege(int damage)
     {
+        if (isImmune)
+            return;
+
         healthAmount -= damage;
         healthAmount = Mathf.Clamp(healthAmount, 0, healthAmountMax);
 
         OnDamaged?.Invoke(this, EventArgs.Empty);
+        Debug.Log("Obecne HP: " + healthAmount);
 
         if (IsDead())
         {
@@ -75,6 +104,19 @@ public class healthSystem : MonoBehaviour
         if (updateHealthAmount)
         {
             healthAmount = healthAmountMax;
+        }
+    }
+
+    private void HandleImmuneState()
+    {
+        if (immuneTimer > 0)
+        {
+            immuneTimer -= Time.deltaTime;
+            isImmune = true;
+        }
+        else
+        {
+            isImmune = false;
         }
     }
 }
