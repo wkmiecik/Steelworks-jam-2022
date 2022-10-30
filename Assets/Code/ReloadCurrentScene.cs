@@ -23,6 +23,7 @@ public class ReloadCurrentScene : MonoBehaviour
 
     private void PlayerHealthSystem_OnDied(object sender, System.EventArgs e)
     {
+        playerHealthSystem.gameObject.GetComponent<PlayerMovement>().SetFreeze(true);
         animator.SetTrigger("Fadeout");
         playerDeathAudio.Play();
     }
