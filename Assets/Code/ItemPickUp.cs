@@ -125,6 +125,9 @@ public class ItemPickUp : MonoBehaviour
 
     private IEnumerator PlaceOnAltarSequence()
     {
+        if (closestAltar == null)
+            yield break;
+
         GameManager.instance.LockInput();
 
         if (Vector3.Distance(pm.transform.position, closestAltar.transform.position) < 1.5f)
