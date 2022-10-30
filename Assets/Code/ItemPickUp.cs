@@ -149,6 +149,8 @@ public class ItemPickUp : MonoBehaviour
         heldItem.layer = LayerMask.NameToLayer("Default");
         heldItem = null;
 
+        closestAltar.TriggerEndPortal();
+
         GameManager.instance.UnlockInput();
     }
 }
