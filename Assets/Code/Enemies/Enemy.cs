@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var healthSystem = other.GetComponentInParent<HealthSystem>();
-            healthSystem.TakeDamege(20);
+            healthSystem.TakeDamege(20, 1f);
         }
     }
 }

@@ -9,7 +9,7 @@ public class TentacleHazard : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var healthSystem = other.GetComponentInParent<HealthSystem>();
-            healthSystem.TakeDamege(100);
+            healthSystem.TakeDamege();
         }
     }
 }

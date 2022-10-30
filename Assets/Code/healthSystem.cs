@@ -64,9 +64,6 @@ public class HealthSystem : MonoBehaviour
     }
     public void TakeDamege()
     {
-        if (isImmune)
-            return;
-
         healthAmount = 0;        
 
         OnDamaged?.Invoke(this, EventArgs.Empty);
