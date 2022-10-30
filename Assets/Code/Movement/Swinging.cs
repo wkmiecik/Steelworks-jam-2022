@@ -113,6 +113,10 @@ public class Swinging : MonoBehaviour
         {
             return;
         }        
+        if(joint != null)
+        {
+            joint = null;
+        }
         swingPoint = predictionHit.point;
         lineRenderer.positionCount = 2;
         hookPosition = lineOrigin.transform.position;
