@@ -13,6 +13,7 @@ public class Swinging : MonoBehaviour
     [Header("Swinging Settings")]
     [SerializeField] private LayerMask whatIsSwingable;
     [SerializeField] private float maxSwingDistance = 25f;
+    [SerializeField] private float swingDelayTime = 0.15f;
 
     [Header("SwingControl")]
     [SerializeField] private Transform orientation;
@@ -32,12 +33,13 @@ public class Swinging : MonoBehaviour
     //public Transform predictionPoint;
 
     private Vector3 swingPoint;
-    private Vector3 currentGrapplePosition;
+    private Vector3 hookPosition;
     private RaycastHit predictionHit;
     private SpringJoint joint;
     private PlayerMovement pm;
     private Rigidbody rb;
     private bool isSwinging;
+    private bool isJoint;
 
     [Header("Input")]
     [SerializeField] private KeyCode swingKey = KeyCode.Mouse1;
@@ -55,7 +57,7 @@ public class Swinging : MonoBehaviour
     {
         if (Input.GetKeyDown(swingKey))
         {
-            StartSwing();
+            StartSwing();           
         }
         if (Input.GetKeyUp(swingKey))
         {
@@ -64,7 +66,7 @@ public class Swinging : MonoBehaviour
 
         CheckForSwingPoints();
 
-        if (isSwinging)
+        if (isSwinging && isJoint)
         {
             SwingMovement();
         }
@@ -77,21 +79,15 @@ public class Swinging : MonoBehaviour
          DrawRope();        
     }
 
-    private void StartSwing()
+    private void InitSwing()
     {
-        if(predictionHit.point == Vector3.zero)
+        if (!isSwinging)
         {
             return;
         }
-        if (pm.IsPlayerHoldingItem)
-        {
-            return;
-        }
-
-        isSwinging = true;
         pm.SetSwing(isSwinging);
+        isJoint = isSwinging;
 
-        swingPoint = predictionHit.point;
         joint = player.gameObject.AddComponent<SpringJoint>();
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedAnchor = swingPoint;
@@ -104,22 +100,38 @@ public class Swinging : MonoBehaviour
         joint.spring = 4.5f;
         joint.damper = 7f;
         joint.massScale = 4.5f;
+       
+    }
 
-        //lineRenderer.positionCount = 2;
+    private void StartSwing()
+    {
+        if (predictionHit.point == Vector3.zero)
+        {
+            return;
+        }
+        if (pm.IsPlayerHoldingItem)
+        {
+            return;
+        }        
+        swingPoint = predictionHit.point;
+        lineRenderer.positionCount = 2;
+        hookPosition = lineOrigin.transform.position;
         lineRenderer.enabled = true;
-        lineRenderer.SetPosition(1, swingPoint);
+        isSwinging = true;
 
-        currentGrapplePosition = lineOrigin.position;         
+        Invoke(nameof(InitSwing), swingDelayTime);
+
     }
     private void StopSwing()
     {
-        isSwinging = false;
+        isSwinging = false;        
         pm.SetSwing(isSwinging);
 
-        //lineRenderer.positionCount = 0;
+        lineRenderer.positionCount = 0;        
         lineRenderer.enabled = false;
 
         Destroy(joint);
+        isJoint = isSwinging;
     }
 
     private void DrawRope()
@@ -127,6 +139,9 @@ public class Swinging : MonoBehaviour
         if (isSwinging)
         {
             lineRenderer.SetPosition(0, lineOrigin.position);
+            lineRenderer.SetPosition(1, hookPosition);
+            float lineSpeedMultiplayer = Mathf.Clamp((Vector3.Distance(lineOrigin.transform.position, swingPoint) / 6f), 2.5f, maxSwingDistance / 6f);
+            hookPosition = Vector3.Lerp(hookPosition, swingPoint, Time.deltaTime * lineSpeedMultiplayer);
         }
     }
 

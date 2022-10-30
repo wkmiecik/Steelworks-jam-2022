@@ -7,7 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class SkyColour : MonoBehaviour
 {
-    public healthSystem healthSystem;
+    public HealthSystem healthSystem;
 
     public Volume red;
 
