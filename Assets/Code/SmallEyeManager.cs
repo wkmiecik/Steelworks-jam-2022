@@ -10,6 +10,7 @@ public class SmallEyeManager : MonoBehaviour
     public static SmallEyeManager Instance { get; private set; }
 
     [SerializeField] private int eyes = 3;
+    [SerializeField] private GameObject Egg;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class SmallEyeManager : MonoBehaviour
 
     private void SomethingHappens()
     {
-        Debug.Log("guwno");
+        Egg.SetActive(true);
         OnEyesDestroyed?.Invoke(this, EventArgs.Empty);
     }
 
