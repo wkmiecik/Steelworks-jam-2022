@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chasamo.unity
     guid: 6e1a979a5df284049b663d0888b53e46
+  - enabled: 1
+    path: Assets/Scenes/Papkin.unity
+    guid: b4dd5a14655d6354f819ec71016acdb4
   m_configObjects: {}
