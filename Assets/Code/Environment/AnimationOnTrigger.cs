@@ -5,12 +5,14 @@ using UnityEngine;
 public class AnimationOnTrigger : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] private string hantleName;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Moveable")
+        Debug.Log(other);
+        if (other.tag == "Moveable" && other.gameObject.name.Equals(hantleName))
         {
-            animator.SetTrigger("GateTrigger");
+            animator.SetTrigger("OpenGate");
         }
     }
 }

@@ -40,7 +40,12 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.Die(collision.impulse);
+            if(enemy != null)
+                enemy.Die(collision.impulse);
+            HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            if (healthSystem != null)
+                healthSystem.TakeDamege(50);
+            
         }
 
         if (dieAfterHit)

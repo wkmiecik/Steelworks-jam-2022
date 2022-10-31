@@ -9,7 +9,7 @@ public class SmallEyeManager : MonoBehaviour
 
     public static SmallEyeManager Instance { get; private set; }
 
-    [SerializeField] private int eyes = 3;
+    [SerializeField] private int eyes = 5;
     [SerializeField] private GameObject Egg;
 
     private void Awake()

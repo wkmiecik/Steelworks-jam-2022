@@ -12,6 +12,7 @@ public class SmallEye : MonoBehaviour
     [SerializeField] private Rigidbody[] pieces;
 
     private bool isLooking = true;
+    private bool isDestroyed = false;
 
     private void Update()
     {
@@ -32,7 +33,11 @@ public class SmallEye : MonoBehaviour
 
     private void DestoryEye()
     {
+        if (isDestroyed)
+            return;
+
         isLooking = false;
+        isDestroyed = true;
         SmallEyeManager.Instance.EyeDestroyed();
         eyeBroken.SetActive(true);
         eyeFine.SetActive(false);

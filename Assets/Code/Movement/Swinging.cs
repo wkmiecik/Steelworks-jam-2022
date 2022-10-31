@@ -35,7 +35,7 @@ public class Swinging : MonoBehaviour
     private Vector3 swingPoint;
     private Vector3 hookPosition;
     private RaycastHit predictionHit;
-    private SpringJoint joint;
+    [SerializeField] private SpringJoint joint;
     private PlayerMovement pm;
     private Rigidbody rb;
     private bool isSwinging;
@@ -86,9 +86,10 @@ public class Swinging : MonoBehaviour
             return;
         }
         pm.SetSwing(isSwinging);
-        isJoint = isSwinging;
+        
 
         joint = player.gameObject.AddComponent<SpringJoint>();
+        isJoint = true;
         joint.autoConfigureConnectedAnchor = false;
         joint.connectedAnchor = swingPoint;
 
@@ -105,6 +106,18 @@ public class Swinging : MonoBehaviour
 
     private void StartSwing()
     {
+        if(joint != null)
+        {
+            isJoint = false;
+            Destroy(joint);
+        }
+        else
+        {
+            joint = GetComponent<SpringJoint>();
+            if(joint != null) 
+                Destroy(joint);
+        }  
+        
         if (predictionHit.point == Vector3.zero)
         {
             return;
@@ -112,11 +125,8 @@ public class Swinging : MonoBehaviour
         if (pm.IsPlayerHoldingItem)
         {
             return;
-        }        
-        if(joint != null)
-        {
-            Destroy(joint);
-        }
+        }   
+
         swingPoint = predictionHit.point;
         lineRenderer.positionCount = 2;
         hookPosition = lineOrigin.transform.position;
@@ -134,8 +144,8 @@ public class Swinging : MonoBehaviour
         lineRenderer.positionCount = 0;        
         lineRenderer.enabled = false;
 
-        Destroy(joint);
-        isJoint = isSwinging;
+        isJoint = false;
+        Destroy(joint);        
     }
 
     private void DrawRope()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ShootingEnemy : MonoBehaviour
 {
@@ -22,16 +23,21 @@ public class ShootingEnemy : MonoBehaviour
     private bool isAbleToShoot = true;
     private bool canSpawn = false;
     private Vector3 targetPos;
+    private HealthSystem healthSystem;
+    private VisualEffect vfx;
 
     private void Awake()
-    {        
+    {
         timerSearch = timeToSearch;
         animator = GetComponent<Animator>();
+        healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDied += HealthSystem_OnDied;
+        vfx = GetComponent<VisualEffect>();
     }
 
     private void Update()
     {
-        if(timerToShoot > 0)
+        if (timerToShoot > 0)
         {
             timerToShoot -= Time.deltaTime;
         }
@@ -40,17 +46,17 @@ public class ShootingEnemy : MonoBehaviour
             isAbleToShoot = true;
         }
 
-        if(animTimer > 0)
+        if (animTimer > 0)
         {
             animTimer -= Time.deltaTime;
         }
         else
-        {            
-            SpawnBall();            
+        {
+            SpawnBall();
         }
-      
 
-        if(timerSearch > 0)
+
+        if (timerSearch > 0)
         {
             timerSearch -= Time.deltaTime;
         }
@@ -58,7 +64,7 @@ public class ShootingEnemy : MonoBehaviour
         {
             CheckForPlayer();
             timerSearch += timeToSearch;
-        }        
+        }
     }
 
     private void CheckForPlayer()
@@ -91,7 +97,7 @@ public class ShootingEnemy : MonoBehaviour
     }
 
     private void Shoot()
-    {        
+    {
         timerToShoot = timeToShoot;
         animator.SetTrigger("Shoot");
         animTimer = waitingForAnim;
@@ -111,5 +117,11 @@ public class ShootingEnemy : MonoBehaviour
         Rigidbody rb = Instantiate(ball, spawn.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.AddForce(targetPos * bulletForce);
         canSpawn = false;
+    }
+    private void HealthSystem_OnDied(object sender, EventArgs e)
+    {
+        vfx.Play();
+        timerToShoot = 999f;
+        Destroy(gameObject, 2f);        
     }
 }
